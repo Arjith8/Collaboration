@@ -37,7 +37,6 @@ export default function RootLayout({
           <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
             <TopBar />
              <div className="flex"> 
-               <AppSidebar />
                <main className="w-full">{children}</main>
              </div>
            <Footer />
