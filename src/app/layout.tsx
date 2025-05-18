@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TopBar } from "@/components/ui/topBar";
+import { Footer } from "@/components/ui/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,8 +36,11 @@ export default function RootLayout({
         enableSystem
         disableTransitionOnChange
       >
-        <TopBar/>
-        {children}
+        <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
+          <TopBar/>
+          {children}
+          <Footer/>
+        </div>
       </ThemeProvider>
       </body>
     </html>
