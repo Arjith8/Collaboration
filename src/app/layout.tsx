@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TopBar } from "@/components/ui/topBar";
 import { Footer } from "@/components/ui/footer";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,18 +31,26 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
-          <TopBar/>
-          {children}
-          <Footer/>
-        </div>
-      </ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
+            <TopBar/>
+            {children}
+            <Footer/>
+          </div>
+          <Toaster
+            richColors
+            toastOptions={{
+              style: {
+                background: 'var(--background)',
+              },
+            }}
+          />
+        </ThemeProvider>
       </body>
     </html>
   );

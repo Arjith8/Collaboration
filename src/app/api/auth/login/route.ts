@@ -1,11 +1,11 @@
 import { NextRequest } from "next/server";
-import { loginRequestBody } from "../../../../types/loginRequestBody";
-import prisma from "../../../../prisma/client";
+import prisma from "../../../../../prisma/client";
+import { loginRequestBody } from "../../../../../types/loginRequestBody";
 import { checkPassword, generateToken } from "@/lib/auth";
 
 
-export default async function POST(request: NextRequest){
-  const body = request.body;
+export  async function POST(request: NextRequest){
+  const body = await request.json();
 
   const validatedBody = loginRequestBody.safeParse(body);
   if (!validatedBody.success) {

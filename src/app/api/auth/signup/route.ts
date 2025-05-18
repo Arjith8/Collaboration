@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signupRequestBody } from '../../../../types/signupRequestBody';
 import { generateToken, hashPassword } from '@/lib/auth';
-import prisma from '../../../../prisma/client';
+import { signupRequestBody } from '../../../../../types/signupRequestBody';
+import prisma from '../../../../../prisma/client';
 
-export default async function signup(request: NextRequest) {
+export async function POST(request: NextRequest) {
   const body = await request.json();
   const data = signupRequestBody.safeParse(body);
   if (!data.success) {

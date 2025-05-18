@@ -1,14 +1,34 @@
 "use client"
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function LoginPage(){
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const res = await fetch("/api/auth/login/", { 
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email, password})
+    })
+    const data = await res.json()
+    if (!res.ok) {
+        toast.error(data.errors)
+    }
+    else {
+        toast.success(data.message);
+        //redirect to main page
+    }
+  };
   return (
     <div className="flex flex-col items-center justify-center  py-2">
       <h1 className="text-3xl font-bold">Login</h1>
-      <form className="flex flex-col w-full max-w-xs mt-4">
+      <form className="flex flex-col w-full max-w-xs mt-4" onSubmit={handleSubmit}>
         <label className="mb-2 text-sm font-medium text-gray-700">Email</label>
         <Input
           type="email"
@@ -32,8 +52,6 @@ export default function LoginPage(){
           Login 
         </button>
       </form>
-
     </div>
-
   )
 }
