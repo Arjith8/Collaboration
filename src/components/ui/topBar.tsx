@@ -1,6 +1,9 @@
+"use client";
+import { useRouter } from "next/navigation";
 import { ThemeToggle } from "./themeToggle";
 
 export function TopBar() {
+  const router = useRouter();
   return (
     <div className="flex items-center justify-between p-4">
       <div className="flex items-center space-x-4">
@@ -13,10 +16,10 @@ export function TopBar() {
       </div>
       <div className="flex items-center space-x-4">
         <ThemeToggle />
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={()=> router.push("/login")}>
           Login
         </button>
-        <button className="bg-gray-500 text-white px-4 py-2 rounded">
+        <button className="bg-gray-500 text-white px-4 py-2 rounded" onClick={()=> router.push("/signup")}>
           Sign Up
         </button>
       </div>
